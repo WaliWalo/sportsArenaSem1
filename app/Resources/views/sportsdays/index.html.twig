@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sportsdays list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sportid</th>
+                <th>Day</th>
+                <th>Opentime</th>
+                <th>Closetime</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sportsDay in sportsDays %}
+            <tr>
+                <td><a href="{{ path('sportsdays_show', { 'id': sportsDay.id }) }}">{{ sportsDay.id }}</a></td>
+                <td>{{ sportsDay.sportId }}</td>
+                <td>{{ sportsDay.day }}</td>
+                <td>{{ sportsDay.openTime }}</td>
+                <td>{{ sportsDay.closeTime }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sportsdays_show', { 'id': sportsDay.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sportsdays_edit', { 'id': sportsDay.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sportsdays_new') }}">Create a new sportsDay</a>
+        </li>
+    </ul>
+{% endblock %}

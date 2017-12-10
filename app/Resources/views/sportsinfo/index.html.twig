@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sportsinfos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sportsid</th>
+                <th>Sportsdesc</th>
+                <th>Sportsloc</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sportsInfo in sportsInfos %}
+            <tr>
+                <td><a href="{{ path('sportsinfo_show', { 'id': sportsInfo.id }) }}">{{ sportsInfo.id }}</a></td>
+                <td>{{ sportsInfo.sportsId }}</td>
+                <td>{{ sportsInfo.sportsDesc }}</td>
+                <td>{{ sportsInfo.sportsLoc }}</td>
+                <td>{{ sportsInfo.price }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sportsinfo_show', { 'id': sportsInfo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sportsinfo_edit', { 'id': sportsInfo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sportsinfo_new') }}">Create a new sportsInfo</a>
+        </li>
+    </ul>
+{% endblock %}
