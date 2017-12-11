@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sportsinfo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sportsInfo.id }}</td>
+            </tr>
+            <tr>
+                <th>Sportsid</th>
+                <td>{{ sportsInfo.sports_id }}</td>
+            </tr>
+            <tr>
+                <th>Sportsdesc</th>
+                <td>{{ sportsInfo.sportsDesc }}</td>
+            </tr>
+            <tr>
+                <th>Sportsloc</th>
+                <td>{{ sportsInfo.sportsLoc }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ sportsInfo.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sportsinfo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('sportsinfo_edit', { 'id': sportsInfo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
