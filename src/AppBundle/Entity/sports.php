@@ -48,11 +48,6 @@ class sports
         return $this->sportsInfo;
     }
 
-    /**
-     * One sport has One sportsDay.
-     * @ORM\OneToOne(targetEntity="sportsDays", mappedBy="sports")
-     */
-    private $sportsDays;
 
 
     /**

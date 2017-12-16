@@ -18,7 +18,7 @@
         {% for sportsDay in sportsDays %}
             <tr>
                 <td><a href="{{ path('sportsdays_show', { 'id': sportsDay.id }) }}">{{ sportsDay.id }}</a></td>
-                <td>{{ sportsDay.sportId }}</td>
+                <td>{{ sportsDay.sportsInfo.id }}</td>
                 <td>{{ sportsDay.day }}</td>
                 <td>{{ sportsDay.openTime }}</td>
                 <td>{{ sportsDay.closeTime }}</td>

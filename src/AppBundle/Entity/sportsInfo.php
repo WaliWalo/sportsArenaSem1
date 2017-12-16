@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * sportsInfo
@@ -47,6 +49,24 @@ class sportsInfo
      * @ORM\JoinColumn(nullable=true)
      */
     private $sports;
+
+    /**
+     * One sportsInfo has Many sportsDays
+     * @ORM\OneToMany(targetEntity="sportsDays", mappedBy="sportsInfo", cascade={"persist"})
+     */
+    private $sportsDays;
+
+    /**
+     * @return Collection|SportsDays[]
+     */
+    public function getSportsDays()
+    {
+        return $this->sportsDays;
+    }
+
+    public function __construct() {
+        $this->sportsDays = new ArrayCollection();
+    }
 
     public function getSports(): Sports
     {

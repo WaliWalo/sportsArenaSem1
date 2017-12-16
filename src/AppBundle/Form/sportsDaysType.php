@@ -13,7 +13,7 @@ class sportsDaysType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('sportId')->add('day')->add('openTime')->add('closeTime');
+        $builder->add('day')->add('openTime')->add('closeTime');
     }
     
     /**

@@ -18,7 +18,7 @@
         {% for sportsInfo in sportsInfos %}
             <tr>
                 <td><a href="{{ path('sportsinfo_show', { 'id': sportsInfo.id }) }}">{{ sportsInfo.id }}</a></td>
-                <td>{{ sportsInfo.sportsId }}</td>
+                <td>{{ sportsInfo.sports.id }}</td>
                 <td>{{ sportsInfo.sportsDesc }}</td>
                 <td>{{ sportsInfo.sportsLoc }}</td>
                 <td>{{ sportsInfo.price }}</td>

@@ -49,8 +49,11 @@ class sportsInfoController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->merge($sportsInfo);
             $em->flush();
+            $session->set('sportsInfo', $sportsInfo);
+            $session->get('sportsInfo');
+            $session->getFlashBag()->add('notice', 'Profile updated');
 
-            return $this->redirectToRoute('sportsinfo_show', array('id' => $sportsInfo->getId()));
+            return $this->redirectToRoute('sportsdays_new');
         }
 
         return $this->render('sportsinfo/new.html.twig', array(

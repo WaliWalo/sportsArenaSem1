@@ -24,13 +24,6 @@ class sportsDays
     /**
      * @var int
      *
-     * @ORM\Column(name="sportId", type="integer")
-     */
-    private $sportId;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="day", type="integer")
      */
     private $day;
@@ -50,12 +43,23 @@ class sportsDays
     private $closeTime;
 
     /**
-     * One sportsDays has One sports.
-     * @ORM\OneToOne(targetEntity="sports", inversedBy="sportsDays")
+     * Many sportsDays has One sportsInfo.
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\sportsInfo", inversedBy="sportsDays")
+     * @ORM\JoinColumn(nullable=true)
      *
      */
-    private $sports;
+    private $sportsInfo;
 
+
+    public function getSportsInfo(): SportsInfo
+    {
+        return $this->sportsInfo;
+    }
+
+    public function setSportsInfo(SportsInfo $sportsInfo)
+    {
+        $this->sportsInfo = $sportsInfo;
+    }
 
     /**
      * Get id
@@ -67,29 +71,6 @@ class sportsDays
         return $this->id;
     }
 
-    /**
-     * Set sportId
-     *
-     * @param integer $sportId
-     *
-     * @return sportsDays
-     */
-    public function setSportId($sportId)
-    {
-        $this->sportId = $sportId;
-
-        return $this;
-    }
-
-    /**
-     * Get sportId
-     *
-     * @return int
-     */
-    public function getSportId()
-    {
-        return $this->sportId;
-    }
 
     /**
      * Set day
@@ -162,5 +143,7 @@ class sportsDays
     {
         return $this->closeTime;
     }
+
+
 }
 

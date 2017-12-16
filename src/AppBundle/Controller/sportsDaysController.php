@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\sportsDays;
+use AppBundle\Entity\sportsInfo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Sportsday controller.
@@ -39,13 +41,20 @@ class sportsDaysController extends Controller
      */
     public function newAction(Request $request)
     {
-        $sportsDay = new Sportsday();
+
+        $sportsDay = new sportsDays();
         $form = $this->createForm('AppBundle\Form\sportsDaysType', $sportsDay);
         $form->handleRequest($request);
-
+        $session = new Session();
+        foreach ($session->getFlashBag()->get('notice', array()) as $message) {
+            echo '<div class="flash-notice">'.$message.'</div>';
+        }
+        $session->getFlashBag();
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $sportsDay->setSportsInfo($session->get('sportsInfo'));
             $em = $this->getDoctrine()->getManager();
-            $em->persist($sportsDay);
+            $em->merge($sportsDay);
             $em->flush();
 
             return $this->redirectToRoute('sportsdays_show', array('id' => $sportsDay->getId()));
